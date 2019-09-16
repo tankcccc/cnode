@@ -1,7 +1,9 @@
 <template>
   <div id="app">
      <Header></Header>
-     <PostList></PostList>
+     <div class="main">
+        <PostList></PostList>
+     </div>
   </div>
 </template>
 
@@ -17,11 +19,13 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
- 
+<style scoped>
+  #app{
+    background:  #e1e1e1;
+  }
+  .main{
+  width: 80%;
+  margin: 0 auto;
+  background: red;
 }
 </style>

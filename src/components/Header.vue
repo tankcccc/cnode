@@ -18,10 +18,10 @@ export default {
 </script>
 
 <style scoped>
-    .header{
-        background-color:#5a5555;
+   .header{
+        background-color:#5a5555 ;
         height: 50px;
-    }
+        }
     img{
         max-width: 120px;
         margin-left: 50px;
@@ -29,15 +29,17 @@ export default {
     }
     ul{
         list-style: none;
-        float:right;
+        float: right;
+        margin: 4px;
     }
     li{
         display: inline-block;
-        padding:1px 15px;
+        padding: 10px 15px;
     }
     a{
         text-decoration: none;
         color: #ccc;
         font-size: 14px;
+        text-shadow: nonr;
     }
 </style>

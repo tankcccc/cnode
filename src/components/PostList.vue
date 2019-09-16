@@ -1,12 +1,21 @@
 <template>
-    <div>
+    <div class="PostList">
         <!-- 数据真在加载 -->
         <div class="loading" v-if="isLoading">
             <img src="../assets/loading.gif">
         </div>
         <!-- 主题列表 -->
-        <div class="PostList">
+        <div>
             <ul>
+                <li>
+                    <div class="toobar">
+                    <span>全部</span>
+                    <span>精华</span>
+                    <span>分享</span>
+                    <span>问答</span>
+                    <span>招聘</span>
+                    </div>
+                </li>
                 <li v-for="post in posts">
                     <!-- 头像 -->
                     <img :src="post.author.avatar_url" alt="">
@@ -68,8 +77,8 @@ export default {
 </script>
 
 <style scoped>
- .PostList{
-    background-color: #e1e1e1;
+  .PostList{
+    background: #e1e1e1;
   }
   .posts {
     margin-top: 10px;
@@ -86,7 +95,9 @@ export default {
     width: 100%;
     max-width: 1344px;
     margin: 0 auto;
+    padding:0
   }
+
   ul li:not(:first-child) {
     padding: 9px;
     font-size: 15px;
