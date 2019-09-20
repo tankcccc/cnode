@@ -21,13 +21,21 @@
                     <img :src="post.author.avatar_url" alt="">
                     <!-- 回复/浏览 -->
                     <span>
-                        <span class="reply_count">{{post.reply_count}}</span>
+                        <span classtopic="reply_count">{{post.reply_count}}</span>
                         /{{post.visit_count}}
                     </span>
                     <!-- 标题 -->
-                    <span>
-                        {{post.title}}
-                    </span>
+                    <router-link :to="{
+                      name:'post_content',
+                      params:{
+                        id:post.id
+                      }
+                    }">
+                        <span>
+                          {{post.title}}
+                        </span>
+                    </router-link>
+           
                     <!-- 最终回复时间 -->
                     <span class="last_reply">
                         {{post.last_reply_at | formatDate}}

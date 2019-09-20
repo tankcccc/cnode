@@ -8,7 +8,11 @@
            <div class="topic_header">
                <div class="topic_title"></div>
                <ul>
-                   <li>*发布于:{{post.create_at | formaDate}}</li>
+                   <li>*发布于:{{post.create_at | formatDate}}</li>
+                   <li>*作者：{{post.author.loginname}}</li>
+                   <li>*{{post.visit_count}} 次浏览</li>
+                   <li>*来自{{post | tabFormatter}}</li>
+                   
                </ul>
            </div>
        </div>
@@ -23,6 +27,25 @@ export default {
             isLoading:false,//是否正在加载
             post:{} //代表当前文章页的所有内容，所有属性
         }
+    },
+    methods:{
+      getArticleData(){
+        this.$http.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
+          .then(res=>{
+            if(res.data.success == true){
+              this.isLoading = false
+              this.post = res.data.data
+
+            }
+          })
+          .catch(err=>{
+            console.log(err)
+          })
+      }
+    },
+    beforeMount(){
+      this.isLoading = true
+      this.getArticleData()
     }
 }
 </script>
