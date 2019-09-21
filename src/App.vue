@@ -28,6 +28,6 @@ export default {
   .main{
   width: 80%;
   margin: 0 auto;
-  background: red;
+  background: white;
 }
 </style>

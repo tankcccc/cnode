@@ -6,15 +6,33 @@
        </div>
        <div v-else>
            <div class="topic_header">
-               <div class="topic_title"></div>
+               <div class="topic_title">{{post.title}}</div>
                <ul>
                    <li>*发布于:{{post.create_at | formatDate}}</li>
                    <li>*作者：{{post.author.loginname}}</li>
                    <li>*{{post.visit_count}} 次浏览</li>
                    <li>*来自{{post | tabFormatter}}</li>
-                   
                </ul>
+               <div v-html="post.content" class="topic_content"></div>
            </div>
+       </div>
+       <div>
+         <div class="topbar">回复</div>
+         <div v-for="(reply,index) in post.replies">
+           <div class="replyUp">
+             <router-link :to="">
+                 <img :src="reply.author.avatar_url" alt="">
+             </router-link>
+              <span>
+                {{reply.author.loginname}}
+              </span>
+              <span>
+                {{index+1}}楼
+              </span>
+              <p v-html="reply.content"></p>
+           </div>
+              
+         </div>
        </div>
   </div>
 </template>
@@ -51,6 +69,7 @@ export default {
 </script>
 
 <style>
+    @import url('../assets/markdown-github.css');
     .topbar {
     padding: 10px;
     background-color: #f6f6f6;
