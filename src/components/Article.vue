@@ -1,6 +1,6 @@
 <template>
   <div class="articl">
-      <!-- 如果正在加载显示此div -->
+      <!-- 在数据未返回的时候，显示这个正在加载的gif -->
        <div class="loading" v-if="isLoading">
             <img src="../assets/loading.gif" >
        </div>
@@ -20,7 +20,12 @@
          <div class="topbar">回复</div>
          <div v-for="(reply,index) in post.replies">
            <div class="replyUp">
-             <router-link :to="">
+             <router-link :to="{
+               name:'user_info',
+               params:{
+                 name:reply.author.loginname
+               }
+             }">
                  <img :src="reply.author.avatar_url" alt="">
              </router-link>
               <span>
