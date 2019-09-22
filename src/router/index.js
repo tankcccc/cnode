@@ -2,9 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Article from '../components/Article'
 import PostList from '../components/PostList'
-import UserIofo from '../components/UserIofo'
+import UserInfo from '../components/UserInfo'
 
-import { userInfo } from 'os'
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +29,5 @@ export default new Router({
                 main:UserInfo
             }
         }
-       
     ]
 })

@@ -1,11 +1,22 @@
 <template>
-  <div class="UserIofo">
+  <div class="UserInfo">
        <!-- 在数据未返回的时候，显示这个正在加载的gif -->
        <div class="loading" v-if="isLoading">
             <img src="../assets/loading.gif" >
        </div>
-       <div class="userInfomation">
-
+       <div class="userInfomation" v-else>
+           <section>
+               <img :src="userinfo.avatar_url">
+               <span>
+                   {{userinfo.loginname}}
+               </span>
+               <p>
+                   {{userinfo.score}}积分
+               </p>
+               <P>
+                   注册时间：{{userinfo.create_at | formatDate}}
+               </p>
+           </section>
        </div>
   </div>
 </template>
@@ -19,7 +30,15 @@ export default {
         }
     },
     getData(){
-        
+        this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
+        .then(res=>{
+            this.isLoading=false //加载成功，去除动画
+            this.posts = res.data.data
+            console.log(res)
+
+        }).catch(err=>{
+            console.log(err)
+        })
     }
 }
 </script>
