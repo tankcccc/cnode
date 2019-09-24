@@ -36,7 +36,6 @@
               </span>
               <p v-html="reply.content"></p>
            </div>
-              
          </div>
        </div>
   </div>

@@ -17,6 +17,21 @@
                    注册时间：{{userinfo.create_at | formatDate}}
                </p>
            </section>
+           <div class="replies">
+             <p>回复的主题</p>
+             <ul>
+               <li v-for="item in userinfo.recent_replies">
+                 <router-link :to="{
+                   name: 'post_content',
+                   params:{
+                     id:item.id
+                   }
+                 }">
+                 {{item.title}}
+                 </router-link>
+               </li>
+             </ul>
+           </div>
        </div>
   </div>
 </template>
@@ -29,16 +44,22 @@ export default {
             isLoading:false
         }
     },
-    getData(){
+    methods:{
+        getData(){
         this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
         .then(res=>{
             this.isLoading=false //加载成功，去除动画
-            this.posts = res.data.data
+            this.userinfo = res.data.data
             console.log(res)
-
-        }).catch(err=>{
+        })
+        .catch(err=>{
             console.log(err)
         })
+      }
+    },
+    beforeMount(){
+      this.isLoading=true;
+      this.getData();
     }
 }
 </script>
