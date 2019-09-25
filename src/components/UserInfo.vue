@@ -17,6 +17,7 @@
                    注册时间：{{userinfo.create_at | formatDate}}
                </p>
            </section>
+           <div id="reply"></div>
            <div class="replies">
              <p>回复的主题</p>
              <ul>
@@ -28,6 +29,21 @@
                    }
                  }">
                  {{item.title}}
+                 </router-link>
+               </li>
+             </ul>
+           </div>
+           <div class="topics">
+             <p>创建的主题</p>
+             <ul>
+               <li v-for="item in userinfo.recent_topics">
+                 <router-link :to="{
+                   name: 'post_content',
+                   params:{
+                     id:item.id
+                   }
+                 }">
+                  {{item.title}}
                  </router-link>
                </li>
              </ul>

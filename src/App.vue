@@ -2,6 +2,9 @@
   <div id="app">
      <Header></Header>
      <div class="main">
+        <router-view name="slidebar">
+          
+        </router-view>
         <router-view name="main">
             
         </router-view>

@@ -16,7 +16,7 @@
                <div v-html="post.content" class="topic_content"></div>
            </div>
        </div>
-       <div>
+       <div id="reply">
          <div class="topbar">回复</div>
          <div v-for="(reply,index) in post.replies">
            <div class="replyUp">
@@ -116,7 +116,10 @@ export default {
     text-align: center;
     padding-top: 300px;
   }
-
+  .replyUp{
+    border-bottom: 1px solid #f5f5f5;
+    margin-left: 12px;
+  }
   .replyUp a:nth-of-type(2) {
     margin-left: 0px;
     display: inline-block;
