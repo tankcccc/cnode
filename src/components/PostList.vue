@@ -28,7 +28,8 @@
                     <router-link :to="{
                       name:'post_content',
                       params:{
-                        id:post.id
+                        id:post.id,
+                        //点击name的时候已经就把title传递过来了
                       }
                     }">
                         <span>
