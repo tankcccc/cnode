@@ -30,6 +30,7 @@
                       params:{
                         id:post.id,
                         //点击name的时候已经就把title传递过来了
+                        name:post.author.loginname
                       }
                     }">
                         <span>

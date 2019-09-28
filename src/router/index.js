@@ -17,7 +17,7 @@ export default new Router({
         },
         {
             name:'post_content',
-            path:'/topic/:id',
+            path:'/topic/:id&author=:name',//这里不是很明白，先把代码记住
             components:{
                 main:Article,
                 slidebar:SlideBar

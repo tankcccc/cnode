@@ -1,5 +1,5 @@
 <template>
-  <div class="articl">
+  <div class="article">
       <!-- 在数据未返回的时候，显示这个正在加载的gif -->
        <div class="loading" v-if="isLoading">
             <img src="../assets/loading.gif" >
@@ -74,6 +74,9 @@ export default {
 
 <style>
     @import url('../assets/markdown-github.css');
+    .article{
+      margin-right: 305px;
+    }
     .topbar {
     padding: 10px;
     background-color: #f6f6f6;
@@ -81,7 +84,6 @@ export default {
     font-size: 12px;
     margin-top: 10px;
   }
-
   .article:not(:first-child) {
     margin-right: 340px;
     margin-top: 15px;
