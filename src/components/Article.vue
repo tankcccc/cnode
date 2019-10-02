@@ -68,15 +68,21 @@ export default {
     beforeMount(){
       this.isLoading = true
       this.getArticleData()
-    }
+    },
+    watch:{
+          '$route'(to,from){
+            this.getArticleData()
+          }
+      }
 }
 </script>
 
 <style>
-    @import url('../assets/markdown-github.css');
     .article{
       margin-right: 305px;
     }
+    @import url('../assets/markdown-github.css');
+    
     .topbar {
     padding: 10px;
     background-color: #f6f6f6;
@@ -113,7 +119,6 @@ export default {
     border-bottom:1px solid #e5e5e5;
     padding:0 10px;
   }
-
   .loading {
     text-align: center;
     padding-top: 300px;
@@ -153,7 +158,13 @@ export default {
     border-top: 1px solid #e5e5e5;
     padding: 0 10px;
   }
-
+  /* 这里css不是很清楚 */
+  pre{
+    word-break:break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    
+  }
   .markdown-text img {
     width: 92% !important;
   }

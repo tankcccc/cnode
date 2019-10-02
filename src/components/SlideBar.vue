@@ -13,9 +13,35 @@
       </div>
       <div class="recent_topics">
          <div class="topbar">作者最近主题</div>
+         <ul>
+            <li v-for="list in topcilimitby5">
+               <router-link :to="{
+                  name:'post_content',
+                  params:{
+                     id:list.id,
+                     name:list.author.loginname
+                  }
+               }">
+               {{list.title}}
+               </router-link>
+            </li>
+         </ul>
       </div>
       <div class="recent_replies">
          <div class="topbar">作者最近回复</div>
+         <ul>
+            <li v-for="list in replylimitby5">
+               <router-link :to="{
+               name:'post_content',
+               params:{
+                  id:list.id,
+                  name:list.author.loginname
+               }
+               }">
+                  {{list.title}}
+               </router-link>
+            </li>
+         </ul>
       </div>
   </div>
 </template>
@@ -42,10 +68,23 @@ export default {
         })
       }
    },
+   computed:{
+      topcilimitby5(){
+         if(this.userinfo.recent_topics){
+            return this.userinfo.recent_topics.slice(0,5);
+          }
+      },
+      replylimitby5(){
+          if(this.userinfo.recent_replies){
+            return this.userinfo.recent_replies.slice(0,5);
+          }
+        }
+   },
    beforeMount(){
         this.isLoading=true //加载成功之前显示加载动画
         this.getData();//在页面加载之前获取数据
-   }
+   },
+   
 }
 </script>
 
@@ -57,7 +96,7 @@ export default {
     width: 328px;
     float: right;
     margin-top: 0;
-    
+
   }
   li{
     padding: 3px 0 ;

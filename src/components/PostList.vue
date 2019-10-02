@@ -50,11 +50,16 @@
                         </span>
                     </span>
                 </li>
+                <li>
+                  <!-- 分页 -->
+                  <pagination ></pagination>
+                </li>
             </ul>
         </div>
     </div>
 </template>
 <script>
+import pagination from './Pagination' //pagination和components中的组件名字必须一样
 export default {
     name:'postList',
     data(){
@@ -78,6 +83,9 @@ export default {
                 console.log(err)
             })
         }
+    },
+    components:{
+       pagination
     },
     beforeMount(){
         this.isLoading=true //加载成功之前显示加载动画
