@@ -2,18 +2,21 @@
   <div class="autherinfo">
       <div class="authersummay">
          <div class="topbar">作者</div> 
-         <router-link to="{
-            name:'user_info',
-            params:{
-               name:userinfo.loginname
-            }
-         }">
-         <img :src="userinfo.avatar_url" alt="">
+         <router-link :to="{
+               name:'user_info',
+               params:{
+                  name:userinfo.loginname
+               }
+               }">
+            <img :src="userinfo.avatar_url" alt="">
          </router-link>
       </div>
       <div class="recent_topics">
          <div class="topbar">作者最近主题</div>
          <ul>
+            <!-- 这个页面有两个组件Article组件还有一个SlideBar组件,点击
+            这个路由的时候，有两个参数需要传递过去，
+             -->
             <li v-for="list in topcilimitby5">
                <router-link :to="{
                   name:'post_content',

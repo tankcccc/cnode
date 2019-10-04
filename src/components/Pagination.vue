@@ -62,6 +62,7 @@ export default {
                 this.pagebtns.unshift(this.pagebtns[0]-1); //先在第一个位置加一个
                 this.pagebtns.splice(5,1);//移除最后一个数字
             }
+             this.$emit('handleList',this.currentPage); //子传父，第一个是事件名，第二个是后边参数要传递的数据
         }
     }
 }

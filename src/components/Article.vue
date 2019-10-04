@@ -5,6 +5,7 @@
             <img src="../assets/loading.gif" >
        </div>
        <div v-else>
+           <!-- 文章 -->
            <div class="topic_header">
                <div class="topic_title">{{post.title}}</div>
                <ul>
@@ -28,8 +29,9 @@
              }">
                  <img :src="reply.author.avatar_url" alt="">
              </router-link>
+             <!-- 需要每个用户的登陆的名字 -->
               <span>
-                {{reply.author.loginname}}
+                {{reply.author.loginname}} 
               </span>
               <span>
                 {{index+1}}楼
@@ -47,17 +49,17 @@ export default {
     data(){
         return{
             isLoading:false,//是否正在加载
-            post:{} //代表当前文章页的所有内容，所有属性
+            post:[] //代表当前文章页的所有内容，所有属性
         }
     },
     methods:{
       getArticleData(){
-        this.$http.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
+        this.$http.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`) //因为作为参数传递过来，需要获取路由
           .then(res=>{
             if(res.data.success == true){
               this.isLoading = false
               this.post = res.data.data
-
+              console.log(res)
             }
           })
           .catch(err=>{
@@ -69,6 +71,7 @@ export default {
       this.isLoading = true
       this.getArticleData()
     },
+    // 这里是侧边栏只是路由参数的变化，同一个路由是检测不到变化的，所以需要watch这个方法
     watch:{
           '$route'(to,from){
             this.getArticleData()

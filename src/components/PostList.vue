@@ -9,15 +9,15 @@
             <ul>
                 <li>
                     <div class="toobar">
-                    <span>全部</span>
-                    <span>精华</span>
-                    <span>分享</span>
-                    <span>问答</span>
-                    <span>招聘</span>
+                      <span>全部</span>
+                      <span>精华</span>
+                      <span>分享</span>
+                      <span>问答</span>
+                      <span>招聘</span>
                     </div>
                 </li>
                 <li v-for="post in posts">
-                    <!-- 头像 -->
+                    <!-- 头像 ,你想动态绑定属性必须要v-bind-->
                     <img :src="post.author.avatar_url" alt="">
                     <!-- 回复/浏览 -->
                     <span>
@@ -42,7 +42,10 @@
                     <span class="last_reply">
                         {{post.last_reply_at | formatDate}}
                     </span>
-                    <!-- 帖子的分类 -->
+                    <!-- 帖子的分类 
+                        前面put_good是class后边括号是条件，
+                        'topiclist-tab'必须加引号
+                    -->
                     <span :class="[{put_good:(post.good  == true),put_top:(post.top  == true),
                         'topiclist-tab':(post.good  != true && post.top  != true)}]">
                         <span>
@@ -51,8 +54,10 @@
                     </span>
                 </li>
                 <li>
-                  <!-- 分页 -->
-                  <pagination ></pagination>
+                  <!-- 分页
+                  前面是自定义事件，后边是定义的方法
+                   -->
+                  <pagination @handleList="renderList" ></pagination>
                 </li>
             </ul>
         </div>
@@ -65,15 +70,20 @@ export default {
     data(){
         return{
             isLoading:false,
-            posts:[] //代表页面的列表数组
-           
+            posts:[], //代表页面的列表数组
+            postpage:1
         }
+    },
+    components:{
+       pagination
     },
     methods:{
         getData(){
             this.$http.get('https://cnodejs.org/api/v1/topics',{
-                page:1,
-                limit:20
+                params:{ //get请求里边还有一个参数叫params
+                  page:this.postpage,
+                  limit:20
+                }
             }).then(res=>{
                 this.isLoading=false //加载成功，去除动画
                 this.posts = res.data.data
@@ -82,10 +92,12 @@ export default {
             }).catch(err=>{
                 console.log(err)
             })
+        },
+        //value就是从子组件传递过来的参数
+        renderList(value){
+          this.postpage = value; //改页
+          this.getData(); //改数据
         }
-    },
-    components:{
-       pagination
     },
     beforeMount(){
         this.isLoading=true //加载成功之前显示加载动画
@@ -93,12 +105,11 @@ export default {
     }
 }
 </script>
-
 <style scoped>
   .PostList{
     background: #e1e1e1;
   }
-  .posts {
+  .posts{
     margin-top: 10px;
   }
 
